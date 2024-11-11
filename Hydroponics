@@ -1,0 +1,24 @@
+import serial
+import time
+
+# Open serial connection (change 'COM3' to your Arduino port, e.g., '/dev/ttyUSB0' on Linux or '/dev/cu.usbmodem' on Mac)
+arduino = serial.Serial('COM3', 9600)  # Adjust to your Arduino's port
+time.sleep(2)  # Wait for the connection to establish
+
+# Function to turn on the pump
+def turn_on_pump():
+    arduino.write(b'1')  # Send '1' to Arduino to turn the pump on
+    print("Pump turned ON")
+
+# Function to turn off the pump
+def turn_off_pump():
+    arduino.write(b'0')  # Send '0' to Arduino to turn the pump off
+    print("Pump turned OFF")
+
+# Example usage:
+turn_on_pump()  # Turn on the pump
+time.sleep(5)   # Wait for 5 seconds (pump running)
+turn_off_pump() # Turn off the pump
+
+# Close the serial connection
+arduino.close()
